@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import MoneyCalculator.ExchangeRateLoader;
 import MoneyCalculator.ExchangeRate;
@@ -26,7 +28,8 @@ public class FixerExchangeRateLoader implements ExchangeRateLoader {
         try {
             url = loadJson(from);
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(FixerExchangeRateLoader.class.getName());
+            logger.log(Level.SEVERE, "Error de conexión con el JSON", e);
         }
         Connection(url, to);
         return new ExchangeRate(from, to, fecha, tasa);
@@ -60,14 +63,14 @@ public class FixerExchangeRateLoader implements ExchangeRateLoader {
             }
             connection.disconnect();
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(FixerExchangeRateLoader.class.getName());
+            logger.log(Level.SEVERE, "Error de conexión", e);
         }
     }
 
     private String loadJson(Currency from) throws IOException {
-        String Mockurl = "https://api.apilayer.com/fixer/latest?"
+        return "https://api.apilayer.com/fixer/latest?"
                 + "base=" + from.code()
                 + "&apikey=" + FixerAPI.key;
-        return Mockurl;
     }
 }

@@ -21,7 +21,7 @@ public class ExchangeMoneyCommand implements Command{
         Currency currency = currencyDialog.get();
 
         ExchangeRate exchangeRate = fixerExchangeRateLoader.load(money.currency(), currency);
-        Money result = new Money((double) (money.amount()*exchangeRate.rate()), currency);
+        Money result = new Money(money.amount()*exchangeRate.rate(), currency);
 
         moneyDisplay.show(result);
     }
