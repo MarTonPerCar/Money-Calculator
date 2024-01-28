@@ -1,4 +1,4 @@
-package Fixerws;
+package MoneyCalculator.Fixerws;
 
 public class FixerExchangeRateLoader {
 }
