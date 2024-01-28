@@ -67,7 +67,7 @@ public class FixerExchangeRateLoader implements ExchangeRateLoader {
     private String loadJson(Currency from) throws IOException {
         String Mockurl = "https://api.apilayer.com/fixer/latest?"
                 + "base=" + from.code()
-                + "&apikey=" + "ukKZSFNJjpxA0M6ryj6hIE19w1J1Fe3p";
+                + "&apikey=" + FixerAPI.key;
         return Mockurl;
     }
 }
